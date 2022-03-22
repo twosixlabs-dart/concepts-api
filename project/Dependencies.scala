@@ -14,16 +14,16 @@ object Dependencies {
     val clulabVersion = "8.2.3"
     val conceptDiscoveryVersion = "172aef7f2aaa80bb14136409f0fa96e612eb1f18"
 
-    val dartAuthVersion = "3.1.144"
+    val dartAuthVersion = "3.1.11"
 
-    val cdr4sVersion = "3.0.256"
+    val cdr4sVersion = "3.0.9"
 
-    val arangoDatastoreVersion = "3.0.35"
+    val arangoDatastoreVersion = "3.0.11"
 
-    val dartCommonsVersion = "3.0.278"
-    val dartRestVersion = "3.0.15"
+    val dartCommonsVersion = "3.0.30"
+    val dartRestVersion = "3.0.4"
 
-    val ontologyRegistryVersion = "3.0.20"
+    val ontologyRegistryVersion = "3.0.12"
 
     val scalatraVersion = "2.7.0"
     val jettyWebappVersion = "9.4.18.v20190429"

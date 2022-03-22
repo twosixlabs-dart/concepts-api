@@ -44,13 +44,13 @@ lazy val commonSettings = {
                                      "com.fasterxml.jackson.core" % "jackson-annotation" % jacksonVersion,
                                      "com.fasterxml.jackson.core" % "jackson-databind" % jacksonVersion ),
         // `sbt test` should skip tests tagged IntegrationTest
-        Test / testOptions := Seq( Tests.Argument( "-l", "com.twosixlabs.dart.test.tags.annotations.IntegrationTest" ) ),
+        Test / testOptions := Seq( Tests.Argument( "-l", "annotations.IntegrationTest" ) ),
         Test / parallelExecution := false,
         //         `sbt integration:test` should run only tests tagged IntegrationTest
         IntegrationConfig / parallelExecution := false,
-        IntegrationConfig / testOptions := Seq( Tests.Argument( "-n", "com.twosixlabs.dart.test.tags.annotations.IntegrationTest" ) ),
+        IntegrationConfig / testOptions := Seq( Tests.Argument( "-n", "annotations.IntegrationTest" ) ),
         //         `sbt wip:test` should run only tests tagged WipTest
-        WipConfig / testOptions := Seq( Tests.Argument( "-n", "com.twosixlabs.dart.test.tags.annotations.WipTest" ) ),
+        WipConfig / testOptions := Seq( Tests.Argument( "-n", "annotations.WipTest" ) ),
     )
 }
 
@@ -65,16 +65,27 @@ lazy val assemblySettings = Seq(
     test in assembly := {}
 )
 
-lazy val publishSettings = Seq(
-    publishTo in ThisBuild := {
-        // TODO
-        None
-    },
+lazy val disablePublish = Seq(
+    skip.in( publish ) := true,
 )
 
-lazy val disablePublish = Seq(
-    publish := {},
-)
+sonatypeProfileName := "com.twosixlabs"
+inThisBuild(List(
+    organization := "com.twosixlabs.dart.concepts",
+    homepage := Some(url("https://github.com/twosixlabs-dart/concepts-api")),
+    licenses := List("GNU-Affero-3.0" -> url("https://www.gnu.org/licenses/agpl-3.0.en.html")),
+    developers := List(
+        Developer(
+            "twosixlabs-dart",
+            "Two Six Technologies",
+            "",
+            url("https://github.com/twosixlabs-dart")
+        )
+    )
+))
+
+ThisBuild / sonatypeCredentialHost := "s01.oss.sonatype.org"
+ThisBuild / sonatypeRepository := "https://s01.oss.sonatype.org/service/local"
 
 /*
    ##############################################################################################
@@ -98,7 +109,6 @@ lazy val conceptsApi = ( project in file( "concepts-api" ) )
   .settings(
       name := "concepts-api",
       commonSettings,
-      publishSettings,
       libraryDependencies ++= cdr4s ++ jackson,
   )
 
@@ -109,7 +119,6 @@ lazy val conceptsServices = ( project in file( "concepts-services" ) )
   .settings(
       name := "concepts-services",
       commonSettings,
-      publishSettings,
       libraryDependencies ++= jackson
                               ++ cdr4s
                               ++ dartCommons
@@ -127,7 +136,6 @@ lazy val conceptsControllers = ( project in file( "concepts-controllers" ) )
   .disablePlugins( sbtassembly.AssemblyPlugin )
   .settings(
       commonSettings,
-      publishSettings,
       libraryDependencies ++= jackson
                               ++ scalatra
                               ++ dartRest
@@ -151,7 +159,6 @@ lazy val conceptsClient = ( project in file( "concepts-client" ) )
   .disablePlugins( sbtassembly.AssemblyPlugin )
   .settings(
       commonSettings,
-      publishSettings,
       libraryDependencies ++= okhttp ++ jackson ++ java8Compat,
   )
 
