@@ -16,7 +16,7 @@ docker-login:
 	docker login -u ${DOCKER_HUB_USERNAME} -p ${DOCKER_HUB_PASSWORD}
 
 docker-build:
-	sbt clean corpexMicroservice/assembly
+	SBT_OPTS="-Xms1024M -Xmx4G -Xss2M -XX:MaxMetaspaceSize=2G" sbt clean conceptsMicroservice/assembly
 	docker build -t $(IMG):$(APP_VERSION) .
 
 docker-push: docker-login docker-build

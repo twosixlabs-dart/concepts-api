@@ -4,3 +4,4 @@ resolvers += "Typesafe repository" at "https://repo.typesafe.com/typesafe/releas
 
 addSbtPlugin( "com.eed3si9n" % "sbt-assembly" % "0.14.6" )
 addSbtPlugin( "com.typesafe.sbt" % "sbt-native-packager" % "1.3.2" )
+addSbtPlugin("com.github.sbt" % "sbt-ci-release" % "1.5.10")
