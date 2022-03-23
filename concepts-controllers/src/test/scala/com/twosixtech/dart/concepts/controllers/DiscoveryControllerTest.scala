@@ -34,6 +34,7 @@ class DiscoveryControllerTest extends StandardTestBase3x with ScalatraSuite with
     }
 
     override def afterEach( ): Unit = {
+        Thread.sleep( 1000 )
         reset( ontologyRegistry )
         reset( discoveryService )
         reset( clusteringService )
@@ -53,6 +54,7 @@ class DiscoveryControllerTest extends StandardTestBase3x with ScalatraSuite with
         post( s"/cluster/submit/$testTenant" ) {
             body shouldBe ""
             status shouldBe 200
+            Thread.sleep( 500 )
         }
     }
 
@@ -64,6 +66,7 @@ class DiscoveryControllerTest extends StandardTestBase3x with ScalatraSuite with
         post( s"/cluster/submit/$testTenant" ) {
             status shouldBe 404
             body should include ( s"no ontology found for tenant ${testTenant} or tenant ${testTenant} does not exist" )
+            Thread.sleep( 500 )
         }
     }
 
@@ -79,6 +82,7 @@ class DiscoveryControllerTest extends StandardTestBase3x with ScalatraSuite with
             pollResponse.jobId shouldBe "N/A"
             pollResponse.complete shouldBe false
             pollResponse.message shouldBe "No job has been submitted"
+            Thread.sleep( 500 )
         }
     }
 
@@ -161,6 +165,7 @@ class DiscoveryControllerTest extends StandardTestBase3x with ScalatraSuite with
             pollResponse.jobId shouldBe "N/A"
             pollResponse.complete shouldBe true
             pollResponse.message shouldBe "Succeeded"
+            Thread.sleep( 500 )
         }
     }
 
@@ -174,6 +179,7 @@ class DiscoveryControllerTest extends StandardTestBase3x with ScalatraSuite with
         post( s"/submit/$testTenant" ) {
             Try( UUID.fromString( body ) ).isSuccess shouldBe true
             status shouldBe 200
+            Thread.sleep( 500 )
         }
     }
 
