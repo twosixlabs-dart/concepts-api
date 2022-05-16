@@ -23,7 +23,7 @@ object Dependencies {
     val dartCommonsVersion = "3.0.30"
     val dartRestVersion = "3.0.4"
 
-    val ontologyRegistryVersion = "3.0.12"
+    val ontologyRegistryVersion = "3.0.19"
 
     val scalatraVersion = "2.7.0"
     val jettyWebappVersion = "9.4.18.v20190429"
@@ -50,7 +50,6 @@ object Dependencies {
                            "com.twosixlabs.dart" %% "dart-test-base" % dartCommonsVersion % Test )
 
     val ontologyRegistry = Seq( "com.twosixlabs.dart.ontologies" %% "ontology-registry-services" % ontologyRegistryVersion )
-
 
     val scalatra = Seq( "org.scalatra" %% "scalatra" % scalatraVersion,
                         "org.scalatra" %% "scalatra-scalate" % scalatraVersion,
