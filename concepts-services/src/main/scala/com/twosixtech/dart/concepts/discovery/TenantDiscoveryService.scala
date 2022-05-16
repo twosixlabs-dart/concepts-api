@@ -1,10 +1,11 @@
 package com.twosixtech.dart.concepts.discovery
 
+import com.twosixlabs.dart.auth.tenant.DartTenant
 import com.twosixtech.dart.concepts.cdr.TenantCdrProvider
-import com.twosixtech.dart.concepts.clusters.{ClusterInputGenerator, ClusterInputs}
-import org.clulab.concepts.{ConceptDiscoverer, ScoredConcept}
+import com.twosixtech.dart.concepts.clusters.{ ClusterInputGenerator, ClusterInputs }
+import org.clulab.concepts.{ ConceptDiscoverer, ScoredConcept }
 import com.twosixtech.dart.concepts.cdr.CdrConversion._
-import org.slf4j.{Logger, LoggerFactory}
+import org.slf4j.{ Logger, LoggerFactory }
 
 class TenantDiscoveryService( conceptDiscovery : ConceptDiscoverer,
                               cdrProvider : TenantCdrProvider,
