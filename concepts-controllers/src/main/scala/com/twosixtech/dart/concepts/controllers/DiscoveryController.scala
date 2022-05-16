@@ -1,20 +1,21 @@
 package com.twosixtech.dart.concepts.controllers
 
+import com.twosixlabs.dart.exceptions.ExceptionImplicits.FutureExceptionLogging
 import com.twosixlabs.dart.exceptions.ResourceNotFoundException
-import com.twosixlabs.dart.ontologies.api.{OntologyArtifact, OntologyRegistry}
+import com.twosixlabs.dart.ontologies.api.{ OntologyArtifact, OntologyRegistry }
 import com.twosixlabs.dart.rest.scalatra.DartScalatraServlet
 import com.twosixlabs.dart.rest.scalatra.models.FailureResponse
 import com.twosixtech.dart.concepts.clusters._
 import com.twosixtech.dart.concepts.discovery.TenantDiscoveryService
-import com.twosixtech.dart.concepts.models.{ClusterResults, PollResponse, SimilarConcept, SingleResult}
-import org.scalatra.{Ok, UnprocessableEntity}
+import com.twosixtech.dart.concepts.models.{ ClusterResults, PollResponse, SimilarConcept, SingleResult }
+import org.scalatra.{ Ok, UnprocessableEntity }
 
 import java.util.UUID
 import scala.annotation.tailrec
 import scala.collection.mutable
 import scala.concurrent.duration.Duration
-import scala.concurrent.{ExecutionContext, Future}
-import scala.util.{Failure, Success, Try}
+import scala.concurrent.{ ExecutionContext, Future }
+import scala.util.{ Failure, Success, Try }
 
 class DiscoveryController( discoveryService : TenantDiscoveryService,
                            tenantOntologyService : OntologyRegistry,
@@ -116,9 +117,9 @@ class DiscoveryController( discoveryService : TenantDiscoveryService,
                             allowedWords = allowedWords,
                             ontologyMetadata = ontology,
                             relevantDocs = relevantDocs
-                            )
                         )
                     )
+                )
             } onComplete  {
                 case Success( JobSubmissionResponse( _, _, true ) ) =>
                     status = Retrieving
